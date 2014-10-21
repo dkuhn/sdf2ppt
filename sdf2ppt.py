@@ -28,7 +28,7 @@ except:
   
 
 # Path to your powerpoint template file. Change this to your needs
-PPT_DEFAULT = "./my_ppt_template.pptxx"
+PPT_DEFAULT = "./my_ppt_template.pptx"
 
 
 
