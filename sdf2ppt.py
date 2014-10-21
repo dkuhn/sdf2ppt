@@ -240,7 +240,7 @@ def init_opt_parser():
   options = parser.parse_args()
   
   
-  if not isfile(PPT_DEFAULT):
+  if not isfile(options.ppt_template):
     print "Sorry, the template pptx file %s does not exist." % PPT_DEFAULT
     exit()
 
