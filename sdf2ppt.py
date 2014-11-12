@@ -1,6 +1,6 @@
-__cmddoc__ = """Usage: %prog [options] arg
+__cmddoc__ = """
 
-sdf2ppt - Converts molecules from a sd-file to a powerpoint presentation file
+sdf2ppt - Reads an SDFile and displays molecules as image grid in powerpoint/openoffice
 
 #Contact: daniel.kuhn@merckgroup.com - 2014 - Merck Serono
 """ 
@@ -263,34 +263,8 @@ def Mol2PNG(m,ofile='out.png',  logger=None, Sanitize=True, x=300,y=300):
   Draw.MolToFile(m, ofile, size=(x,y))
  
  
- 
 
-if __name__ == '__main__':
-  # Parse Commandline
-  options  = init_opt_parser()
-  # init logger
-  logger = init_current_logging()
-
-  
-  prs = Presentation(options.ppt_template)
-  text_slide_layout = prs.slide_layouts[5]
-
-  mols  = Chem.SDMolSupplier(options.sdfile)
- 
-
-  num_mols_per_page = options.num_mols_page
-  num_pages = (len(mols)/num_mols_per_page)+1
- 
-  # set the margins
-  left_border = 1.3
-  image_width = 5.3
-  image_height = 5.3
-  label_vert_size = 1.0
-  
-  # set first and second line
-  top_border_first_line = 5.72
-  top_border_second_line = top_border_first_line + image_width + label_vert_size
-
+def sdf2ppt(mols=[]):
   mol_count=0
   page_count=1
   for mol in mols:
@@ -335,4 +309,35 @@ if __name__ == '__main__':
     #
   #
   prs.save(options.sdfile.replace(".sdf", ".pptx"))
+
+   
+
+if __name__ == '__main__':
+  # Parse Commandline
+  options  = init_opt_parser()
+  # init logger
+  logger = init_current_logging()
+
+  
+  prs = Presentation(options.ppt_template)
+  text_slide_layout = prs.slide_layouts[5]
+
+  mols  = Chem.SDMolSupplier(options.sdfile)
+ 
+
+  num_mols_per_page = options.num_mols_page
+  num_pages = (len(mols)/num_mols_per_page)+1
+ 
+  # set the margins
+  left_border = 1.3
+  image_width = 5.3
+  image_height = 5.3
+  label_vert_size = 1.0
+  
+  # set first and second line
+  top_border_first_line = 5.72
+  top_border_second_line = top_border_first_line + image_width + label_vert_size
+  
+  sdf2ppt(mols=mols)
+  
 

@@ -1,6 +1,6 @@
 sdf2ppt
 =======
 
-Visualize the molecules in a sdfile in a powerpoint presentation.
+Reads an SDFile and displays molecules as image grid in powerpoint/openoffice presentation.
 
-Chemical structures in a sdfile are displayed in a grid display in powerpoint as PNG files together with their names.
+Molecules are displayed as PNG images together with their molecule names.
